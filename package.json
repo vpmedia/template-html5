@@ -2,10 +2,10 @@
   "name": "template_html5",
   "version": "0.1.0",
   "author": "Andras Csizmadia",
-  "gomepage": "http://bitbucket.org/docmetsystems/template_html5",
+  "gomepage": "https://github.com/vpmedia/template-html5",
   "repository": {
     "type": "git",
-    "url": "git://bitbucket.org/docmetsystems/template_html5.git"
+    "url": "https://github.com/vpmedia/template-html5.git"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

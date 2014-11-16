@@ -8,15 +8,13 @@ Getting Started
 
 http://howtonode.org/how-to-install-nodejs
 
-## Install Grunt and Grunt-CLI
-
-> npm install grunt
+## Install Grunt-CLI, Grunt and Dependencies
 
 > npm install -g grunt-cli
 
-## Install Dependencies
+> npm install grunt
 
-> grunt -i
+> npm install
 
 ## Assemble 
 
