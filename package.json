@@ -31,6 +31,8 @@
     "babel-preset-flow": "^1.0.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "browser-sync": "^2.18.5",
+    "browser-sync-webpack-plugin": "^1.1.3",
     "chai": "^3.5.0",
     "del": "^2.2.2",
     "eslint": "^3.12.0",
@@ -55,19 +57,5 @@
       "react",
       "flow"
     ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "airbnb",
-      "plugin:flowtype/recommended"
-    ],
-    "parser": "babel-eslint",
-    "plugins": [
-      "import",
-      "flowtype"
-    ],
-    "env": {
-      "browser": true
-    }
   }
 }
