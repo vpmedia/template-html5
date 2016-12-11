@@ -9,10 +9,11 @@
     "import",
     "flowtype"
   ],
+  "globals": {
+    "__DEV__": true
+  },
   "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+    "browser": true
   },
   "rules": {
     "no-console": 0

@@ -13,7 +13,13 @@ http://howtonode.org/how-to-install-nodejs
 
 ### Build
 
-> $sudo yarn start
+> $sudo yarn main
+
+### Build with Gulp
+
+    Experimental
+
+> $sudo yarn gulp
 
 ## Dependencies
 
