@@ -1,2 +1,43 @@
+# HTML5 Template Project
+# author: Andras Csizmadia <andras@vpmedia.hu>
+
+####################
+# APP
+####################
+
+*.log
+/dist/client-bundle.js*
+lib/
+
+####################
+# IDE
+####################
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+####################
+# Package managers
+####################
+
+# Composer (PHP)
+vendor/
+composer.lock
+
+# NPM (JS)
+npm_modules/
+
+# Node (JS)
 node_modules/
-dist/
+
+# Bower (JS)
+bower_components/
+
+# Grunt (JS)
+.grunt/
+
+# Gradle (Groovy)
+.gradle/

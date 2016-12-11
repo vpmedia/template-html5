@@ -1,21 +1,14 @@
 template-html5 [![Build Status](https://travis-ci.org/vpmedia/template-html5.svg)](https://travis-ci.org/vpmedia/template-html5)
 ==============
 
-Getting Started
----------------
+# Getting Started
 
-## Install NodeJS
+## Install Node.js
 
 http://howtonode.org/how-to-install-nodejs
 
-## Install Grunt-CLI, Grunt and Dependencies
+## Install dependencies
 
-> npm install -g grunt-cli
+> $sudo npm install -g yarn
 
-> npm install grunt
-
-> npm install
-
-## Assemble 
-
-> grunt
+> $sudo yarn add global gulp-cli
