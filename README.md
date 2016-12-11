@@ -7,6 +7,10 @@ template-html5 [![Build Status](https://travis-ci.org/vpmedia/template-html5.svg
 
 http://howtonode.org/how-to-install-nodejs
 
-## Install dependencies
+## Install Yarn
 
 > $sudo npm install -g yarn
+
+## Build
+
+> $sudo yarn start
