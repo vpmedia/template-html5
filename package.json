@@ -13,7 +13,14 @@
   "scripts": {
     "start": "gulp",
     "test": "gulp test",
-    "main": "gulp main"
+    "watch": "watch 'yarn run main' src --interval=1",
+    "main": "yarn run typecheck && yarn run lint && babel-node src/main/server/index.js",
+    "lint:js": "eslint src/**/*.js",
+    "lint:css": "stylelint \"src/**/*.{css,less,scss,sss}\"",
+    "lint": "yarn run lint:js && yarn run lint:css",
+    "typecheck": "flow",
+    "webpack": "webpack --verbose",
+    "webpack-release": "webpack --config webpack.config.release.babel.js --verbose"
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
@@ -26,6 +33,7 @@
     "redux-immutable": "^3.0.8"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.9",
     "babel-preset-flow": "^1.0.0",
@@ -41,6 +49,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "^6.8.0",
+    "flow-bin": "^0.36.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
@@ -49,13 +58,31 @@
     "mocha": "^3.2.0",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
+    "stylelint": "^7.6.0",
+    "stylelint-config-standard": "^15.0.0",
+    "webpack": "^1.14.0",
     "webpack-stream": "^3.2.0"
   },
-  "babel": {
-    "presets": [
-      "latest",
-      "react",
-      "flow"
-    ]
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "string-quotes": "single",
+      "property-no-unknown": [
+        true,
+        {
+          "ignoreProperties": [
+            "composes"
+          ]
+        }
+      ],
+      "selector-pseudo-class-no-unknown": [
+        true,
+        {
+          "ignorePseudoClasses": [
+            "global"
+          ]
+        }
+      ]
+    }
   }
 }

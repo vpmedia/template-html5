@@ -1,10 +1,16 @@
-# HTML5 Template Project 
+# HTML5 Template Project
 # author: Andras Csizmadia <andras@vpmedia.hu>
 
-git: 
+git:
     depth: 1
 
 language: node_js
+node_js:
+- '6'
 
 env:
     - TERM=dumb
+
+script:
+  - npm install -g yarn
+  - yarn run lint

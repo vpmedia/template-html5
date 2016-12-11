@@ -7,15 +7,13 @@ import mocha from 'gulp-mocha';
 import del from 'del';
 import webpack from 'webpack-stream';
 import flow from 'gulp-flowtype';
-import webpackConfig from './webpack.config.babel';
+import webpackConfig from './webpack.config.gulp.babel';
 
 const paths = {
   srcFile: 'src/**/*.js?(x)',
   testFile: 'lib/test/**/*.js?(x)',
   mainFile: 'src/main/client/app.js',
   bundleFile: 'dist/client-bundle.js?(.map)',
-  gulpFile: 'gulpfile.babel.js',
-  webpackFile: 'webpack.config.babel.js',
   libDir: 'lib',
   distDir: 'dist',
 };
@@ -23,8 +21,6 @@ const paths = {
 gulp.task('lint', () =>
   gulp.src([
     paths.srcFile,
-    paths.gulpFile,
-    paths.webpackFile,
   ])
     .pipe(eslint())
     .pipe(eslint.format())
