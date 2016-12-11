@@ -15,25 +15,11 @@ http://howtonode.org/how-to-install-nodejs
 
 > $sudo yarn main
 
-### Build with Gulp
-
-    Experimental
-
-> $sudo yarn gulp
-
 ## Dependencies
 
 https://github.com/yarnpkg/yarn
 
-https://github.com/gulpjs/gulp
-
-https://github.com/babel/gulp-babel
-
-https://github.com/adametry/gulp-eslint
-
 https://github.com/sindresorhus/del
-
-https://github.com/sindresorhus/gulp-mocha
 
 https://github.com/babel/babel
 
