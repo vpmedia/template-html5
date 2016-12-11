@@ -3,13 +3,9 @@ template-html5 [![Build Status](https://travis-ci.org/vpmedia/template-html5.svg
 
 ## Getting Started
 
-### Install Node.js
+> https://nodejs.org/en/download/
 
-http://howtonode.org/how-to-install-nodejs
-
-### Install Yarn
-
-> $sudo npm install -g yarn
+> $ sudo npm install -g yarn
 
 ### Build
 
@@ -30,8 +26,6 @@ https://github.com/babel/babel-eslint
 https://github.com/eslint/eslint
 
 https://github.com/webpack/webpack
-
-https://github.com/shama/webpack-stream
 
 https://github.com/webpack/expose-loader
 
