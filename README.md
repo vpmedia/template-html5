@@ -10,5 +10,3 @@ http://howtonode.org/how-to-install-nodejs
 ## Install dependencies
 
 > $sudo npm install -g yarn
-
-> $sudo yarn add global gulp-cli
