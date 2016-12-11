@@ -54,7 +54,7 @@ const config = {
       }),
     ],
   ],
-  devtool: 'source-map',
+  devtool: isDebug ? 'cheap-module-source-map' : 'source-map',
   module: {
     loaders: [
       {
@@ -101,15 +101,40 @@ const clientConfig = extend(true, {}, config, {
 });
 
 const serverConfig = extend(true, {}, config, {
+  entry: {
+    client: path.resolve(__dirname, 'src/main/server/index.js')
+  },
   output: {
-    filename: 'server-bundle.js',
+    filename: 'server.js',
+    libraryTarget: 'commonjs2',
   },
   target: 'node',
+  plugins: [
+    // Define free variables
+    // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
+      'process.env.BROWSER': false,
+      __DEV__: isDebug,
+    }),
+
+    // Do not create separate chunks of the server bundle
+    // https://webpack.github.io/docs/list-of-plugins.html#limitchunkcountplugin
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+
+    // Adds a banner to the top of each generated chunk
+    // https://webpack.github.io/docs/list-of-plugins.html#bannerplugin
+    new webpack.BannerPlugin('require("source-map-support").install();',
+      { raw: true, entryOnly: false }),
+  ],
   node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
+    console: false,
+    global: false,
+    process: false,
+    Buffer: false,
+    __filename: false,
+    __dirname: false,
   },
 });
 
-export default [clientConfig];
+export default [clientConfig, serverConfig];
