@@ -18,7 +18,7 @@ const config = {
   },
   devtool: isDebug ? 'cheap-module-source-map' : 'source-map',
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
@@ -30,13 +30,14 @@ const config = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.coffee'],
-    modules: ['src', 'node_modules'],
+    root: path.resolve(__dirname, 'src'),
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ['node_modules'],
   },
   // Don't attempt to continue if there are any errors.
   bail: !isDebug,
   cache: isDebug,
-  //debug: isDebug,
+  debug: isDebug,
   stats: {
     colors: true,
     reasons: isDebug,
@@ -137,8 +138,8 @@ const serverConfig = extend(true, {}, config, {
 
     // Adds a banner to the top of each generated chunk
     // https://webpack.github.io/docs/list-of-plugins.html#bannerplugin
-    //new webpack.BannerPlugin('require("source-map-support").install();',
-    //  { raw: true, entryOnly: false }),
+    new webpack.BannerPlugin('require("source-map-support").install();',
+      { raw: true, entryOnly: false }),
   ],
   node: {
     console: false,
