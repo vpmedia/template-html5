@@ -85,10 +85,8 @@ const clientConfig = extend(true, {}, config, {
       minChunks: module => /node_modules/.test(module.resource),
     }),
     ...isDebug ? [] : [
-      // Assign the module and chunk ids by occurrence count
-      // Consistent ordering of modules required if using any hashing ([hash] or [chunkhash])
-      // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
-      new webpack.optimize.OccurrenceOrderPlugin(true),
+      // https://webpack.js.org/guides/migrating/#debug
+      new webpack.LoaderOptionsPlugin({debug: isDebug}),
 
       // Search for equal or similar files and deduplicate them in the output
       // https://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
