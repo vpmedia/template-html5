@@ -6,8 +6,12 @@ import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
 
 const plugins = webpackLoadPlugins();
 
-const isDebug = !process.argv.includes('--release');
+const isDebug = !process.argv.includes('-p');
 const isVerbose = process.argv.includes('--verbose');
+
+console.log('Running ...');
+console.log('Debug: ' + isDebug);
+console.log('Verbose: ' + isVerbose);
 
 const config = {
   output: {
@@ -36,7 +40,6 @@ const config = {
   // Don't attempt to continue if there are any errors.
   bail: !isDebug,
   cache: isDebug,
-  //debug: isDebug,
   stats: {
     colors: true,
     reasons: isDebug,
@@ -84,30 +87,6 @@ const clientConfig = extend(true, {}, config, {
       name: 'vendor',
       minChunks: module => /node_modules/.test(module.resource),
     }),
-    ...isDebug ? [] : [
-      // https://webpack.js.org/guides/migrating/#debug
-      new webpack.LoaderOptionsPlugin({debug: isDebug}),
-
-      // Search for equal or similar files and deduplicate them in the output
-      // https://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-      new webpack.optimize.DedupePlugin(),
-
-      // Minimize all JavaScript output of chunks
-      // https://github.com/mishoo/UglifyJS2#compressor-options
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          screw_ie8: true, // React doesn't support IE8
-          warnings: isVerbose,
-        },
-        mangle: {
-          screw_ie8: true,
-        },
-        output: {
-          comments: false,
-          screw_ie8: true,
-        },
-      }),
-    ],
   ],
 });
 
@@ -128,11 +107,9 @@ const serverConfig = extend(true, {}, config, {
       'process.env.BROWSER': false,
       __DEV__: isDebug,
     }),
-
     // Do not create separate chunks of the server bundle
     // https://webpack.github.io/docs/list-of-plugins.html#limitchunkcountplugin
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-
     // Adds a banner to the top of each generated chunk
     // https://webpack.github.io/docs/list-of-plugins.html#bannerplugin
     //new webpack.BannerPlugin('require("source-map-support").install();',

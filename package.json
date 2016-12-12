@@ -19,9 +19,9 @@
     "lint": "yarn run lint:js && yarn run lint:css",
     "flow": "flow",
     "test": "mocha \"src/test/**/*test.js\" --require babel-register --require src/test/setup.js",
-    "webpack": "webpack --config webpack.config.babel.js --verbose",
-    "webpack-dev": "webpack --config webpack.config.babel.js --verbose --watch",
-    "webpack-release": "webpack --config webpack.config.babel.js --verbose --release"
+    "webpack": "webpack -d",
+    "webpack-dev": "webpack -d --watch",
+    "webpack-release": "webpack -p"
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
