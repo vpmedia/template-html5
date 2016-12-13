@@ -1,3 +1,7 @@
+// Webpack v2 configuration
+// author: Andras Csizmadia
+// see: https://webpack.js.org/configuration/
+
 import path from 'path';
 import webpack from 'webpack';
 import extend from 'extend';
@@ -34,8 +38,8 @@ const config = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.coffee'],
-    modules: ['src', 'node_modules'],
+    extensions: ['.js', '.jsx', '.json', '.css', '.coffee'],
+    modules: ['node_modules', path.resolve(__dirname, 'src')],
   },
   // Don't attempt to continue if there are any errors.
   bail: !isDebug,
@@ -66,7 +70,6 @@ const clientConfig = extend(true, {}, config, {
   target: 'web',
   plugins: [
     // Local development server with auto updates
-    // https://github.com/browsersync/browser-sync
     new BrowserSyncPlugin({
       host: process.env.IP || 'localhost',
       port: process.env.PORT || 3000,
@@ -75,14 +78,12 @@ const clientConfig = extend(true, {}, config, {
       }
     }),
     // Define free variables
-    // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       'process.env.BROWSER': true,
       __DEV__: isDebug,
     }),
     // Move modules that occur in multiple entry chunks to a new entry chunk (the commons chunk).
-    // http://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: module => /node_modules/.test(module.resource),
@@ -101,17 +102,14 @@ const serverConfig = extend(true, {}, config, {
   target: 'node',
   plugins: [
     // Define free variables
-    // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       'process.env.BROWSER': false,
       __DEV__: isDebug,
     }),
     // Do not create separate chunks of the server bundle
-    // https://webpack.github.io/docs/list-of-plugins.html#limitchunkcountplugin
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
     // Adds a banner to the top of each generated chunk
-    // https://webpack.github.io/docs/list-of-plugins.html#bannerplugin
     //new webpack.BannerPlugin('require("source-map-support").install();',
     //  { raw: true, entryOnly: false }),
   ],
