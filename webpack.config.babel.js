@@ -17,6 +17,12 @@ console.log('Running ...');
 console.log('Debug: ' + isDebug);
 console.log('Verbose: ' + isVerbose);
 
+// Phaser webpack config
+var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/');
+var phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
+var pixi = path.join(phaserModule, 'build/custom/pixi.js');
+var p2 = path.join(phaserModule, 'build/custom/p2.js');
+
 const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -35,11 +41,28 @@ const config = {
         ],
         exclude: [/node_modules/],
       },
+      {
+        test: /pixi\.js/,
+        loader: 'expose-loader?PIXI'
+      },
+      {
+        test: /phaser-split\.js/,
+        loader: 'expose-loader?Phaser'
+      },
+      {
+        test: /p2\.js/,
+        loader: 'expose-loader?p2'
+      },
     ],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.coffee'],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
+    alias: {
+      'phaser': phaser,
+      'pixi': pixi,
+      'p2': p2
+    },
   },
   bail: !isDebug,
   cache: isDebug,
@@ -60,8 +83,7 @@ const config = {
 const clientConfig = extend(true, {}, config, {
   target: 'web',
   entry: {
-    client: path.resolve(__dirname, 'src/main/client/app.js'),
-    client_react: path.resolve(__dirname, 'src/main/client/app.jsx')
+    client: path.resolve(__dirname, 'src/main/client/app.jsx')
   },
   output: {
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',

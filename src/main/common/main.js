@@ -8,11 +8,11 @@ class Main {
   }
 
   init() {
-    return `Main ${this.name}`;
+    return `${this.name}`;
   }
 
   console() {
-    console.log(`Main ${this.name}`);
+    console.log(`${this.name}`);
   }
 }
 

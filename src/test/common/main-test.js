@@ -14,8 +14,8 @@ describe('common', () => {
     describe('init', () => {
       it('print Main ES6', () => {
         stub(console, 'log');
-        new Main('ES6').console();
-        console.log.should.have.been.calledWith('Main ES6');
+        new Main('Hello World').console();
+        console.log.should.have.been.calledWith('Hello World');
         console.log.restore();
       });
     });

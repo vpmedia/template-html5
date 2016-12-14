@@ -1,6 +1,8 @@
 template-html5 [![Build Status](https://travis-ci.org/vpmedia/template-html5.svg)](https://travis-ci.org/vpmedia/template-html5)
 ==============
 
+HTML5 / ES6 example using Phaser and React
+
 ## Getting Started
 
 > https://nodejs.org/en/download/
