@@ -15,8 +15,6 @@ template-html5 [![Build Status](https://travis-ci.org/vpmedia/template-html5.svg
 
 https://github.com/yarnpkg/yarn
 
-https://github.com/sindresorhus/del
-
 https://github.com/babel/babel
 
 https://github.com/babel/babel-loader
@@ -32,3 +30,5 @@ https://github.com/webpack/expose-loader
 https://github.com/mochajs/mocha
 
 https://github.com/browsersync/browser-sync
+
+https://github.com/airbnb/enzyme

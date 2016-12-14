@@ -60,7 +60,8 @@ const config = {
 const clientConfig = extend(true, {}, config, {
   target: 'web',
   entry: {
-    client: path.resolve(__dirname, 'src/main/client/app.js')
+    client: path.resolve(__dirname, 'src/main/client/app.js'),
+    client_react: path.resolve(__dirname, 'src/main/client/app.jsx')
   },
   output: {
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
