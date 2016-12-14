@@ -41,7 +41,6 @@ const config = {
     extensions: ['.js', '.jsx', '.json', '.css', '.coffee'],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
   },
-  // Don't attempt to continue if there are any errors.
   bail: !isDebug,
   cache: isDebug,
   stats: {
@@ -55,11 +54,11 @@ const config = {
     cached: isVerbose,
     cachedAssets: isVerbose,
   },
-  // Watch for changes
   watch: isDebug,
 };
 
 const clientConfig = extend(true, {}, config, {
+  target: 'web',
   entry: {
     client: path.resolve(__dirname, 'src/main/client/app.js')
   },
@@ -67,9 +66,7 @@ const clientConfig = extend(true, {}, config, {
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDebug ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
   },
-  target: 'web',
   plugins: [
-    // Local development server with auto updates
     new BrowserSyncPlugin({
       host: process.env.IP || 'localhost',
       port: process.env.PORT || 3000,
@@ -77,13 +74,11 @@ const clientConfig = extend(true, {}, config, {
         baseDir: ['./dist']
       }
     }),
-    // Define free variables
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       'process.env.BROWSER': true,
       __DEV__: isDebug,
     }),
-    // Move modules that occur in multiple entry chunks to a new entry chunk (the commons chunk).
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: module => /node_modules/.test(module.resource),
@@ -92,6 +87,7 @@ const clientConfig = extend(true, {}, config, {
 });
 
 const serverConfig = extend(true, {}, config, {
+  target: 'node',
   entry: {
     client: path.resolve(__dirname, 'src/main/server/index.js')
   },
@@ -99,19 +95,12 @@ const serverConfig = extend(true, {}, config, {
     filename: 'server.js',
     libraryTarget: 'commonjs2',
   },
-  target: 'node',
   plugins: [
-    // Define free variables
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       'process.env.BROWSER': false,
       __DEV__: isDebug,
     }),
-    // Do not create separate chunks of the server bundle
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-    // Adds a banner to the top of each generated chunk
-    //new webpack.BannerPlugin('require("source-map-support").install();',
-    //  { raw: true, entryOnly: false }),
   ],
   node: {
     console: false,
