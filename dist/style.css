@@ -1,6 +1,13 @@
 html,
 body {
-  background-color: white;
+  font-family: Helvetica, Arial;
+  background-color: grey;
   margin: 0;
   padding: 0;
+}
+
+.app {
+  padding: 25px;
+  position: absolute;
+  color: white;
 }
