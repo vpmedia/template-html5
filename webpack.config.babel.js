@@ -80,6 +80,26 @@ const config = {
   watch: isDebug,
 };
 
+const libraryConfig = extend(true, {}, config, {
+  target: 'web',
+  entry: {
+    library: path.resolve(__dirname, 'src/main/library/index.js')
+  },
+  output: {
+    filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
+    chunkFilename: isDebug ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
+    library: 'library',
+    libraryTarget: 'var'
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
+      'process.env.BROWSER': true,
+      __DEV__: isDebug,
+    })
+  ],
+});
+
 const clientConfig = extend(true, {}, config, {
   target: 'web',
   entry: {
@@ -112,7 +132,7 @@ const clientConfig = extend(true, {}, config, {
 const serverConfig = extend(true, {}, config, {
   target: 'node',
   entry: {
-    client: path.resolve(__dirname, 'src/main/server/index.js')
+    server: path.resolve(__dirname, 'src/main/server/index.js')
   },
   output: {
     filename: 'server.js',
@@ -135,4 +155,4 @@ const serverConfig = extend(true, {}, config, {
   },
 });
 
-export default [clientConfig, serverConfig];
+export default [libraryConfig, clientConfig, serverConfig];
