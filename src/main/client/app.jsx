@@ -1,7 +1,4 @@
 import 'babel-polyfill';
-import 'pixi';
-import 'p2';
-import Phaser from 'phaser';
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Main from '../common/main';
