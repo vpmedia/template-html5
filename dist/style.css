@@ -1,13 +1,13 @@
 html,
 body {
   font-family: Helvetica, Arial;
-  background-color: grey;
+  background-color: #111111;
   margin: 0;
   padding: 0;
 }
 
 .app {
-  padding: 25px;
+  padding: 5px;
   position: absolute;
   color: white;
 }

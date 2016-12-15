@@ -2,28 +2,33 @@ import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
 
-/*
-import BootState from './states/Boot'
-import SplashState from './states/Splash'
-import GameState from './states/Game'
-*/
+import BootState from './phaser/boot';
+import PreloadState from './phaser/preload';
+import GameState from './phaser/game';
 
 class Game extends Phaser.Game {
 
   constructor() {
+    // set render size with max constraint
     const clientWidth = document.documentElement.clientWidth;
     const clientHeight = document.documentElement.clientHeight;
-    const width = clientWidth > 800 ? 800 : clientWidth;
-    const height = clientHeight > 600 ? 600 : clientHeight;
-
-    super(width, height, Phaser.AUTO, null, null);
-
-    /*
+    const width = clientWidth > 1280 ? 1280 : clientWidth;
+    const height = clientHeight > 1024 ? 1024 : clientHeight;
+    // create configuration
+    const config = {
+      width: width,
+      height: height,
+      renderMode: Phaser.AUTO,
+      transparent: false,
+      antialias: false
+    };
+    super(config);
+    // add states
     this.state.add('Boot', BootState, false);
-    this.state.add('Splash', SplashState, false);
+    this.state.add('Preload', PreloadState, false);
     this.state.add('Game', GameState, false);
+    // start with Boot state
     this.state.start('Boot');
-    */
   }
 }
 
