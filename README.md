@@ -9,9 +9,9 @@ HTML5 template project using modern JS tools
 
 > $ sudo npm install -g yarn
 
-### Build
+> $ sudo yarn install
 
-> $sudo yarn main
+> $ sudo yarn main
 
 ## Dependencies
 
