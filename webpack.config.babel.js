@@ -89,7 +89,7 @@ const libraryConfig = extend(true, {}, config, {
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDebug ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
     library: 'library',
-    libraryTarget: 'var'
+    libraryTarget: 'umd'
   },
   plugins: [
     new webpack.DefinePlugin({
