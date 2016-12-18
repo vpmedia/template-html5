@@ -11,7 +11,7 @@ HTML5 template project using modern JS tools
 
 > $ sudo yarn install
 
-> $ sudo yarn main
+> $ sudo yarn build
 
 ## Dependencies
 

@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import Phaser from 'phaser';
 import WebFont from 'webfontloader';
 
@@ -5,7 +8,7 @@ class BootState extends Phaser.State {
   init() {
     // set background color
     this.stage.backgroundColor = '#000000';
-    // sets the number of pointers – the cursor or the touch (single or multi-touch on a mobile device)
+    // sets the number of pointers – the cursor or the touch
     this.input.maxPointers = 1;
     // round coordinates to whole pixels
     this.game.renderer.renderSession.roundPixels = true;
@@ -21,21 +24,21 @@ class BootState extends Phaser.State {
     // use fps counter with advanced timing mode
     this.game.time.advancedTiming = __DEV__;
     // add custom webfont loader handler
-    this._onFontsLoaded = this._onFontsLoaded.bind(this);
+    this.onFontsLoaded = this.onFontsLoaded.bind(this);
   }
 
   preload() {
     WebFont.load({
       google: {
-        families: ['Ubuntu']
+        families: ['Ubuntu'],
       },
-      active: this._onFontsLoaded
+      active: this.onFontsLoaded,
     });
 
     const text = this.add.text(this.world.centerX, this.world.centerY, 'Initializing ...', {
       font: '16px Arial',
       fill: '#FFFFFF',
-      align: 'center'
+      align: 'center',
     });
     text.anchor.setTo(0.5, 0.5);
 
@@ -43,7 +46,7 @@ class BootState extends Phaser.State {
     this.load.image('loaderBar', './assets/images/loader-bar.png');
   }
 
-  _onFontsLoaded() {
+  onFontsLoaded() {
     this.state.start('Preload');
   }
 

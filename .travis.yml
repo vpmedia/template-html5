@@ -13,4 +13,4 @@ env:
 
 script:
   - npm install -g yarn
-  - yarn run main
+  - yarn build

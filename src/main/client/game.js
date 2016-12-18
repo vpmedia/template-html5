@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
@@ -16,11 +19,11 @@ class Game extends Phaser.Game {
     const height = clientHeight > 1024 ? 1024 : clientHeight;
     // create configuration
     const config = {
-      width: width,
-      height: height,
+      width,
+      height,
       renderMode: Phaser.AUTO,
       transparent: false,
-      antialias: false
+      antialias: false,
     };
     super(config);
     // add states
