@@ -1,3 +1,5 @@
 # Automatically normalize line endings for all text-based files
 * text=auto
-**/*.js -lf
+* text eol=lf
+*.js text
+*.jsx text
