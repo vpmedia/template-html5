@@ -5,16 +5,15 @@
 import path from 'path';
 import webpack from 'webpack';
 import extend from 'extend';
-import webpackLoadPlugins from 'webpack-load-plugins';
 import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
 
-const plugins = webpackLoadPlugins();
-
-const isDebug = !process.argv.includes('-p');
+const isDebug = process.argv.includes('-d');
+const isRelease = process.argv.includes('-p');
 const isVerbose = process.argv.includes('--verbose');
 
 console.log('Running ...');
 console.log('Debug: ' + isDebug);
+console.log('Release: ' + isRelease);
 console.log('Verbose: ' + isVerbose);
 
 // Phaser webpack config
@@ -63,6 +62,7 @@ const config = {
       'pixi': pixi,
       'p2': p2
     },
+    unsafeCache: isDebug,
   },
   bail: !isDebug,
   cache: isDebug,
@@ -86,8 +86,8 @@ const libraryConfig = extend(true, {}, config, {
     library: path.resolve(__dirname, 'src/main/library/index.js')
   },
   output: {
-    filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
-    chunkFilename: isDebug ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
+    filename: !isRelease ? '[name].js' : '[name].[chunkhash:8].js',
+    chunkFilename: !isRelease ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
     library: 'library',
     libraryTarget: 'umd'
   },
@@ -106,8 +106,8 @@ const clientConfig = extend(true, {}, config, {
     client: path.resolve(__dirname, 'src/main/client/app.jsx')
   },
   output: {
-    filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
-    chunkFilename: isDebug ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
+    filename: !isRelease ? '[name].js' : '[name].[chunkhash:8].js',
+    chunkFilename: !isRelease ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
   },
   plugins: [
     new BrowserSyncPlugin({
