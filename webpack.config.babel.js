@@ -24,8 +24,8 @@ var p2 = path.join(phaserModule, 'build/custom/p2.js');
 
 const config = {
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: './dist/',
+    path: path.resolve(__dirname, 'dist/js'),
+    publicPath: './dist/js/',
     sourcePrefix: '',
     pathinfo: isVerbose,
   },
@@ -83,7 +83,7 @@ const config = {
 const libraryConfig = extend(true, {}, config, {
   target: 'web',
   entry: {
-    library: path.resolve(__dirname, 'src/main/library/index.js')
+    library: [path.resolve(__dirname, 'src/main/library/index.js')]
   },
   output: {
     filename: !isRelease ? '[name].js' : '[name].[chunkhash:8].js',
@@ -96,7 +96,11 @@ const libraryConfig = extend(true, {}, config, {
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       'process.env.BROWSER': true,
       __DEV__: isDebug,
-    })
+    }),
+    new webpack.DllPlugin({
+      path: 'dist/js/[name]-manifest.json',
+      name: 'library'
+    }),
   ],
 });
 
@@ -110,6 +114,10 @@ const clientConfig = extend(true, {}, config, {
     chunkFilename: !isRelease ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
   },
   plugins: [
+    /*new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: require('./dist/library-manifest.json')
+    }),*/
     new BrowserSyncPlugin({
       host: process.env.IP || 'localhost',
       port: process.env.PORT || 3000,
