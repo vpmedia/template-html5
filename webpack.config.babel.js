@@ -5,7 +5,10 @@
 import path from 'path';
 import webpack from 'webpack';
 import extend from 'extend';
-import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
+import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
+import webpackLoadPlugins from 'webpack-load-plugins';
+
+const plugins = webpackLoadPlugins();
 
 const isDebug = process.argv.includes('-d');
 const isRelease = process.argv.includes('-p');
@@ -17,10 +20,10 @@ console.log('Release: ' + isRelease);
 console.log('Verbose: ' + isVerbose);
 
 // Phaser webpack config
-var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/');
+/*var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/');
 var phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
 var pixi = path.join(phaserModule, 'build/custom/pixi.js');
-var p2 = path.join(phaserModule, 'build/custom/p2.js');
+var p2 = path.join(phaserModule, 'build/custom/p2.js');*/
 
 const config = {
   output: {
@@ -40,7 +43,7 @@ const config = {
         ],
         exclude: [/node_modules/],
       },
-      {
+      /*{
         test: /pixi\.js/,
         loader: 'expose-loader?PIXI'
       },
@@ -51,17 +54,20 @@ const config = {
       {
         test: /p2\.js/,
         loader: 'expose-loader?p2'
-      },
+      },*/
     ],
+  },
+  externals: {
+      phaser: 'Phaser'
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.coffee'],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
-    alias: {
+    /*alias: {
       'phaser': phaser,
       'pixi': pixi,
       'p2': p2
-    },
+    },*/
     unsafeCache: isDebug,
   },
   bail: !isDebug,
@@ -106,10 +112,17 @@ const clientConfig = extend(true, {}, config, {
       'process.env.BROWSER': true,
       __DEV__: isDebug,
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+    /*new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: module => /node_modules/.test(module.resource),
-    }),
+    }),*/
+    new plugins.copy([
+            { from: 'node_modules/phaser-ce/build/phaser.min.js', to: 'phaser.min.js' },
+            // { from: 'node_modules/phaser-ce/build/custom/phaser-no-physics.min.js', to: 'phaser-no-physics.min.js' }
+        ], {
+            ignore: [],
+            copyUnmodified: false
+        })
   ],
 });
 

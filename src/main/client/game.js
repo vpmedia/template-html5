@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
-import 'pixi';
-import 'p2';
+// import 'pixi';
+// import 'p2';
 import Phaser from 'phaser';
 
 import BootState from './phaser/boot';

@@ -31,20 +31,6 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
-    unsafeCache: false,
-  },
-  bail: !isDebug,
-  cache: false,
-  stats: {
-    colors: true,
-    reasons: isDebug,
-    hash: isVerbose,
-    version: isVerbose,
-    timings: true,
-    chunks: isVerbose,
-    chunkModules: isVerbose,
-    cached: isVerbose,
-    cachedAssets: isVerbose,
   },
   target: 'web',
   entry: {
@@ -59,11 +45,7 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'dist/js'),
-    publicPath: './dist/js/',
-    sourcePrefix: '',
-    pathinfo: isVerbose,
     filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
     library: 'library',
     libraryTarget: 'umd'
   },

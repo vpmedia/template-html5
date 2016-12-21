@@ -19,10 +19,10 @@
     "lint": "yarn run lint:js && yarn run lint:css",
     "flow": "flow",
     "test": "mocha \"src/test/**/*test.js\" --require babel-register --require src/test/setup.js",
-    "webpack": "webpack -d",
-    "webpack-lib": "webpack --config webpack-library.config.babel.js -p",
+    "webpack": "webpack -d --progress",
+    "webpack-lib": "webpack --config webpack-library.config.babel.js -p --progress",
     "webpack-dev": "webpack -d --watch",
-    "webpack-release": "webpack -p"
+    "webpack-release": "webpack -p --progress"
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
@@ -54,6 +54,8 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "chai-immutable": "^1.6.0",
+    "clean-webpack-plugin": "^0.1.14",
+    "copy-webpack-plugin": "^4.0.1",
     "enzyme": "^2.6.0",
     "eslint": "^3.12.0",
     "eslint-config-airbnb": "^13.0.0",
@@ -70,7 +72,8 @@
     "sinon-chai": "^2.8.0",
     "stylelint": "^7.6.0",
     "stylelint-config-standard": "^15.0.0",
-    "webpack": "^2.2.0-rc.0"
+    "webpack": "^2.2.0-rc.0",
+    "webpack-load-plugins": "^0.1.2"
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
