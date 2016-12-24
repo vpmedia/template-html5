@@ -61,7 +61,7 @@ const config = {
       phaser: 'Phaser'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css', '.coffee'],
+    extensions: ['.js', '.jsx', '.json'],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
     /*alias: {
       'phaser': phaser,
