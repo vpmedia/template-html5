@@ -1,7 +1,9 @@
 // Webpack v2 configuration
 // author: Andras Csizmadia
 // see: https://webpack.js.org/configuration/
-
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
+/* eslint-disable new-cap */
 import path from 'path';
 import webpack from 'webpack';
 import extend from 'extend';
@@ -15,15 +17,15 @@ const isRelease = process.argv.includes('-p');
 const isVerbose = process.argv.includes('--verbose');
 
 console.log('Running ...');
-console.log('Debug: ' + isDebug);
-console.log('Release: ' + isRelease);
-console.log('Verbose: ' + isVerbose);
+console.log(`Debug: ${isDebug}`);
+console.log(`Release: ${isRelease}`);
+console.log(`Verbose: ${isVerbose}`);
 
 // Phaser webpack config
-/*var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/');
+/* var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/');
 var phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
 var pixi = path.join(phaserModule, 'build/custom/pixi.js');
-var p2 = path.join(phaserModule, 'build/custom/p2.js');*/
+var p2 = path.join(phaserModule, 'build/custom/p2.js'); */
 
 const config = {
   output: {
@@ -43,7 +45,7 @@ const config = {
         ],
         exclude: [/node_modules/],
       },
-      /*{
+      /* {
         test: /pixi\.js/,
         loader: 'expose-loader?PIXI'
       },
@@ -54,20 +56,20 @@ const config = {
       {
         test: /p2\.js/,
         loader: 'expose-loader?p2'
-      },*/
+      }, */
     ],
   },
   externals: {
-      phaser: 'Phaser'
+    phaser: 'Phaser',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
-    /*alias: {
+    /* alias: {
       'phaser': phaser,
       'pixi': pixi,
       'p2': p2
-    },*/
+    }, */
     unsafeCache: isDebug,
   },
   bail: !isDebug,
@@ -89,7 +91,7 @@ const config = {
 const clientConfig = extend(true, {}, config, {
   target: 'web',
   entry: {
-    client: path.resolve(__dirname, 'src/main/client/app.jsx')
+    client: path.resolve(__dirname, 'src/main/client/app.jsx'),
   },
   output: {
     filename: !isRelease ? '[name].js' : '[name].[chunkhash:8].js',
@@ -98,38 +100,32 @@ const clientConfig = extend(true, {}, config, {
   plugins: [
     new webpack.DllReferencePlugin({
       context: '.',
-      manifest: require('./dist/js/library-manifest.json')
+      manifest: require('./dist/js/library-manifest.json'),
     }),
     new BrowserSyncPlugin({
       host: process.env.IP || 'localhost',
       port: process.env.PORT || 3000,
       server: {
-        baseDir: ['./dist']
-      }
+        baseDir: ['./dist'],
+      },
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       'process.env.BROWSER': true,
       __DEV__: isDebug,
     }),
-    /*new webpack.optimize.CommonsChunkPlugin({
+    /* new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: module => /node_modules/.test(module.resource),
-    }),*/
-    new plugins.copy([
-            { from: 'node_modules/phaser-ce/build/phaser.min.js', to: 'phaser.min.js' },
-            // { from: 'node_modules/phaser-ce/build/custom/phaser-no-physics.min.js', to: 'phaser-no-physics.min.js' }
-        ], {
-            ignore: [],
-            copyUnmodified: false
-        })
+    }), */
+    new plugins.copy([{ from: 'node_modules/phaser-ce/build/phaser.min.js', to: 'phaser.min.js' }], { ignore: [], copyUnmodified: false }),
   ],
 });
 
 const serverConfig = extend(true, {}, config, {
   target: 'node',
   entry: {
-    server: path.resolve(__dirname, 'src/main/server/index.js')
+    server: path.resolve(__dirname, 'src/main/server/index.js'),
   },
   output: {
     filename: 'server.js',

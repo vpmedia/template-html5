@@ -1,7 +1,7 @@
 // Webpack v2 configuration
 // author: Andras Csizmadia
 // see: https://webpack.js.org/configuration/
-
+/* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import webpack from 'webpack';
 
@@ -10,9 +10,9 @@ const isRelease = process.argv.includes('-p');
 const isVerbose = process.argv.includes('--verbose');
 
 console.log('Running ...');
-console.log('Debug: ' + isDebug);
-console.log('Release: ' + isRelease);
-console.log('Verbose: ' + isVerbose);
+console.log(`Debug: ${isDebug}`);
+console.log(`Release: ${isRelease}`);
+console.log(`Verbose: ${isVerbose}`);
 
 const config = {
   devtool: isDebug ? 'cheap-module-source-map' : 'source-map',
@@ -40,14 +40,14 @@ const config = {
       'react',
       'react-dom',
       'webfontloader',
-      path.resolve(__dirname, 'src/main/library/index.js')
-    ]
+      path.resolve(__dirname, 'src/main/library/index.js'),
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist/js'),
     filename: '[name].js',
     library: 'library',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -57,7 +57,7 @@ const config = {
     }),
     new webpack.DllPlugin({
       path: 'dist/js/[name]-manifest.json',
-      name: 'library'
+      name: 'library',
     }),
   ],
 };
