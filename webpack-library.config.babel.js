@@ -9,7 +9,7 @@ const isDebug = process.argv.includes('-d');
 const isRelease = process.argv.includes('-p');
 const isVerbose = process.argv.includes('--verbose');
 
-console.log('Running ...');
+console.log('Building library ...');
 console.log(`Debug: ${isDebug}`);
 console.log(`Release: ${isRelease}`);
 console.log(`Verbose: ${isVerbose}`);
