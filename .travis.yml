@@ -12,5 +12,4 @@ env:
   - TERM=dumb
 
 script:
-  - npm install -g yarn
   - yarn build
