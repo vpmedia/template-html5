@@ -2,14 +2,14 @@
 # author: Andras Csizmadia <andras@vpmedia.hu>
 
 git:
-    depth: 1
+  depth: 1
 
 language: node_js
 node_js:
-- '6'
+  - '6'
 
 env:
-    - TERM=dumb
+  - TERM=dumb
 
 script:
   - npm install -g yarn
