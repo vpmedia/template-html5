@@ -13,7 +13,7 @@
   "scripts": {
     "run-node": "babel-node src/main/server/index.js",
     "watch": "watch 'yarn run main' src --interval=1",
-    "build": "yarn run lint && yarn run flow && yarn run test && yarn webpack-lib && yarn webpack",
+    "build": "yarn run lint && yarn run flow && yarn run test && yarn run webpack-lib && yarn run webpack",
     "lint:js": "eslint src/**/*.{js,jsx}",
     "lint:css": "stylelint \"dist/css/*.css\"",
     "lint:scss": "stylelint \"src/**/*.{css,less,scss,sss}\"",
