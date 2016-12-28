@@ -12,8 +12,4 @@ env:
   - TERM=dumb
 
 script:
-  - yarn run lint
-  - yarn run flow
-  - yarn run test
-  - yarn run webpack-lib
-  - yarn run webpack
+  - yarn run build
