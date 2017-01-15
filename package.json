@@ -30,7 +30,7 @@
   "dependencies": {
     "babel-polyfill": "^6.20.0",
     "immutable": "^3.8.1",
-    "phaser-ce": "^2.7.2",
+    "phaser-ce": "^2.7.3",
     "promise-polyfill": "^6.0.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
