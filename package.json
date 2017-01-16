@@ -24,8 +24,7 @@
     "webpack-lib": "webpack --config webpack-library.config.babel.js -p",
     "webpack-dev": "webpack -d",
     "webpack-dev-watch": "webpack -d --watch",
-    "webpack-release": "webpack -p",
-    "webpack-release-watch": "webpack -p --watch"
+    "webpack-release": "webpack -p"
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
