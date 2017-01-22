@@ -11,7 +11,7 @@ HTML5 template project using modern JS tools
 
 ### Install Yarn
 
-> $ sudo npm install -g yarn
+> https://yarnpkg.com/en/docs/install
 
 ### Install dependencies
 
