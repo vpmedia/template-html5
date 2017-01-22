@@ -20,6 +20,7 @@
     "lint": "yarn run lint:js && yarn run lint:css",
     "flow": "flow",
     "sloc": "sloc src/main",
+    "doc": "jsdoc src/main -r -d docs --verbose",
     "test": "mocha \"src/test/**/*test.js\" --require babel-register --require src/test/setup.js",
     "webpack-lib": "webpack --config webpack-library.config.babel.js -p",
     "webpack-dev": "webpack -d",
