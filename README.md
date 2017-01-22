@@ -5,13 +5,21 @@ HTML5 template project using modern JS tools
 
 ## Getting Started
 
+### Install Node.js v6+
+
 > https://nodejs.org/en/download/
+
+### Install Yarn
 
 > $ sudo npm install -g yarn
 
-> $ sudo yarn install
+### Install dependencies
 
-> $ sudo yarn build
+> $ yarn
+
+### Build project
+
+> $ yarn build
 
 ## Dependencies
 
