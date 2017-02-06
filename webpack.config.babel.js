@@ -94,8 +94,8 @@ const clientConfig = extend(true, {}, config, {
     client: path.resolve(__dirname, 'src/main/client/app.jsx'),
   },
   output: {
-    filename: !isRelease ? '[name].js' : '[name].[chunkhash:8].js',
-    chunkFilename: !isRelease ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
   },
   plugins: [
     new webpack.DllReferencePlugin({
