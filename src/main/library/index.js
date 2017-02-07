@@ -1,16 +1,27 @@
-// @flow
+/* @flow */
 
 class Library {
-  name: string;
 
-  constructor(name: string) {
+  /**
+   * Constructor
+   * @param {string} name - Name
+   * @property {string} name - Name
+   * @constructor
+   */
+  constructor(name) {
     this.name = name;
   }
 
+  /**
+   * @private
+   */
   init() {
     return `${this.name}`;
   }
 
+  /**
+   * @private
+   */
   console() {
     console.log(`${this.name}`);
   }
