@@ -5,8 +5,7 @@
   ],
   "parser": "babel-eslint",
   "plugins": [
-    "import",
-    "flowtype"
+    "import"
   ],
   "globals": {
     "__DEV__": true
