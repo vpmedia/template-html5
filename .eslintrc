@@ -17,6 +17,7 @@
   },
   "rules": {
     "no-console": "off",
+    "complexity": ["warn", { "max": 10 }],
     "require-jsdoc": ["warn", {
       "require": {
         "FunctionDeclaration": true,
