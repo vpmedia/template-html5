@@ -69,7 +69,7 @@
     "expose-loader": "^0.7.1",
     "extend": "^3.0.0",
     "flow-bin": "^0.36.0",
-    "flow-jsdoc": "https://github.com/Kegsay/flow-jsdoc",
+    "flow-jsdoc": "^0.3.0",
     "flow-typed": "^2.0.0",
     "jsdoc": "^3.4.3",
     "jsinspect": "^0.8.0",
