@@ -6,24 +6,36 @@ import WebFont from 'webfontloader';
 
 class BootState extends Phaser.State {
   init() {
-    // set background color
+    const GAME_WIDTH = 1280;
+    const GAME_HEIGHT = 1024;
     this.stage.backgroundColor = '#000000';
-    // sets the number of pointers – the cursor or the touch
     this.input.maxPointers = 1;
-    // round coordinates to whole pixels
     this.game.renderer.renderSession.roundPixels = true;
-    // do not pause the game when the browser tab loses focus
     this.stage.disableVisibilityChange = true;
-    // set scale mode to show all centered
-    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    this.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-    this.scale.pageAlignHorizontally = true;
-    this.scale.pageAlignVertically = true;
-    // performance optimization
+    this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+    this.scale.fullScreenScaleMode = Phaser.ScaleManager.USER_SCALE;
+    this.game.scale.onSizeChange.add((width, height) => {
+      const state = this.game.state.getCurrentState();
+      if (state && state.resize) {
+        state.resize(width, height);
+      }
+    });
+    let lastWidth = -1;
+    let lastHeight = -1;
+    this.game.scale.setResizeCallback((scale, parentBounds) => {
+      if (lastWidth !== parentBounds.width || lastHeight !== parentBounds.height) {
+        lastWidth = parentBounds.width;
+        lastHeight = parentBounds.height;
+        const userScale = Math.min(lastWidth / GAME_WIDTH, lastHeight / GAME_HEIGHT);
+        const invertedUserScale = 1 / userScale;
+        this.game.scale.setUserScale(userScale);
+        const newGameWidth = Math.round(window.innerWidth * invertedUserScale);
+        const newGameHeight = Math.round(window.innerHeight * invertedUserScale);
+        this.game.scale.setGameSize(newGameWidth, newGameHeight);
+      }
+    }, this);
     this.game.forceSingleUpdate = true;
-    // use fps counter with advanced timing mode
     this.game.time.advancedTiming = __DEV__;
-    // add custom webfont loader handler
     this.onFontsLoaded = this.onFontsLoaded.bind(this);
   }
 
