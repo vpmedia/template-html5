@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
+/* globals __DEV__ */
 import Phaser from 'phaser';
 import WebFont from 'webfontloader';
 
@@ -46,16 +47,19 @@ class BootState extends Phaser.State {
       },
       active: this.onFontsLoaded,
     });
-
-    const text = this.add.text(this.world.centerX, this.world.centerY, 'Initializing ...', {
+    this.view = {};
+    this.view.textLabel = this.add.text(this.world.centerX, this.world.centerY, 'Initializing ...', {
       font: '16px Arial',
       fill: '#FFFFFF',
       align: 'center',
     });
-    text.anchor.setTo(0.5, 0.5);
+    this.view.textLabel.anchor.setTo(0.5, 0.5);
+    this.load.image('loaderBar', 'assets/loader-bar.png');
+  }
 
-    this.load.image('loaderBg', 'assets/images/loader-bg.png');
-    this.load.image('loaderBar', 'assets/images/loader-bar.png');
+  resize() {
+    this.view.textLabel.x = this.world.centerX;
+    this.view.textLabel.y = this.world.centerY;
   }
 
   onFontsLoaded() {

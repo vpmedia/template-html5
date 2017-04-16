@@ -6,18 +6,21 @@ import Phaser from 'phaser';
 class PreloadState extends Phaser.State {
 
   preload() {
-    const preloadBackground = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBg');
-    preloadBackground.anchor.set(0.5);
-    const preloadProgress = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBar');
-    preloadProgress.anchor.set(0.5);
-    // set preloader bar sprite
-    this.load.setPreloadSprite(preloadProgress);
+    this.view = {};
+    this.view.preloadProgress = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBar');
+    this.view.preloadProgress.anchor.set(0.5);
+    this.load.setPreloadSprite(this.view.preloadProgress);
     // TODO: load your assets
-    // this.load.image('custom_id', 'assets/images/custom.png');
+    // this.load.image('custom_id', 'assets/custom.png');
   }
 
   create() {
     this.state.start('Game');
+  }
+
+  resize() {
+    this.view.preloadProgress.x = this.game.world.centerX;
+    this.view.preloadProgress.y = this.game.world.centerY;
   }
 
 }
