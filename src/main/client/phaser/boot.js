@@ -9,10 +9,27 @@ class BootState extends Phaser.State {
   init() {
     const GAME_WIDTH = 1280;
     const GAME_HEIGHT = 1024;
+    // set background color
     this.stage.backgroundColor = '#000000';
+    // sets the number of pointers – the cursor or the touch
+    // phaser.io/docs/2.6.2/Phaser.Input.html#maxPointers
     this.input.maxPointers = 1;
+    // round coordinates to whole pixels
     this.game.renderer.renderSession.roundPixels = true;
+    // clear the canvas each frame before rendering the display list.
+    // phaser.io/docs/2.6.2/Phaser.Game.html#clearBeforeRender
+    this.game.clearBeforeRender = false;
+    // do not pause the game when the browser tab loses focus
+    // phaser.io/docs/2.6.2/Phaser.Stage.html#disableVisibilityChange
     this.stage.disableVisibilityChange = true;
+    // should the game loop force a logic update, regardless of the delta timer
+    // phaser.io/docs/2.6.2/Phaser.Game.html#forceSingleUpdate
+    this.game.forceSingleUpdate = true;
+    // enable advanced profiling
+    // phaser.io/docs/2.6.2/Phaser.Time.html#advancedTiming
+    this.game.time.advancedTiming = __DEV__;
+    // set scale mode
+    // phaser.io/docs/2.6.2/Phaser.ScaleManager.html
     this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
     this.scale.fullScreenScaleMode = Phaser.ScaleManager.USER_SCALE;
     this.game.scale.onSizeChange.add((width, height) => {
@@ -35,8 +52,6 @@ class BootState extends Phaser.State {
         this.game.scale.setGameSize(newGameWidth, newGameHeight);
       }
     }, this);
-    this.game.forceSingleUpdate = true;
-    this.game.time.advancedTiming = __DEV__;
     this.onFontsLoaded = this.onFontsLoaded.bind(this);
   }
 
