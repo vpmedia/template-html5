@@ -9,8 +9,6 @@ class BootState extends Phaser.State {
   init() {
     const GAME_WIDTH = 1280;
     const GAME_HEIGHT = 1024;
-    // set background color
-    this.stage.backgroundColor = '#000000';
     // sets the number of pointers – the cursor or the touch
     // phaser.io/docs/2.6.2/Phaser.Input.html#maxPointers
     this.input.maxPointers = 1;
@@ -19,9 +17,6 @@ class BootState extends Phaser.State {
     // clear the canvas each frame before rendering the display list.
     // phaser.io/docs/2.6.2/Phaser.Game.html#clearBeforeRender
     this.game.clearBeforeRender = false;
-    // do not pause the game when the browser tab loses focus
-    // phaser.io/docs/2.6.2/Phaser.Stage.html#disableVisibilityChange
-    this.stage.disableVisibilityChange = true;
     // should the game loop force a logic update, regardless of the delta timer
     // phaser.io/docs/2.6.2/Phaser.Game.html#forceSingleUpdate
     this.game.forceSingleUpdate = true;
