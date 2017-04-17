@@ -117,6 +117,7 @@ const clientConfig = extend(true, {}, config, {
       minChunks: module => /node_modules/.test(module.resource),
     }), */
     new CopyWebpackPlugin([
+    { from: 'node_modules/phaser-ce/build/phaser.js', to: 'phaser.js' },
     { from: 'node_modules/phaser-ce/build/phaser.min.js', to: 'phaser.min.js' },
     { from: 'node_modules/phaser-ce/build/phaser.map', to: 'phaser.map' }
     ], { ignore: [], copyUnmodified: false }),
