@@ -44,7 +44,7 @@ const config = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, 'dist/js'),
+    path: path.resolve(__dirname, 'build/js'),
     filename: '[name].js',
     library: 'library',
     libraryTarget: 'umd',
@@ -56,7 +56,7 @@ const config = {
       __DEV__: isDebug,
     }),
     new webpack.DllPlugin({
-      path: 'dist/js/[name]-manifest.json',
+      path: 'build/js/[name]-manifest.json',
       name: 'library',
     }),
   ],

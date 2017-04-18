@@ -27,8 +27,8 @@ var p2 = path.join(phaserModule, 'build/custom/p2.js'); */
 
 const config = {
   output: {
-    path: path.resolve(__dirname, 'dist/js'),
-    publicPath: './dist/js/',
+    path: path.resolve(__dirname, 'build/js'),
+    publicPath: './build/js/',
     sourcePrefix: '',
     pathinfo: isVerbose,
   },
@@ -98,13 +98,13 @@ const clientConfig = extend(true, {}, config, {
   plugins: [
     new webpack.DllReferencePlugin({
       context: '.',
-      manifest: require('./dist/js/library-manifest.json'),
+      manifest: require('./build/js/library-manifest.json'),
     }),
     new BrowserSyncPlugin({
       host: process.env.IP || 'localhost',
       port: process.env.PORT || 3000,
       server: {
-        baseDir: ['./dist'],
+        baseDir: ['./build'],
       },
     }),
     new webpack.DefinePlugin({
