@@ -24,7 +24,7 @@
     "check": "yarn run sloc && yarn run lint && yarn run flow && yarn run test",
     "sloc": "sloc src/main",
     "doc": "jsdoc src/main -r -d docs --verbose",
-    "test": "mocha \"src/test/**/*test.js\" --require babel-register --require src/test/setup.js",
+    "test": "mocha src/test/**/*test.js --require babel-register --require src/test/setup.js --colors --reporter mocha-junit-reporter --reporter-options mochaFile=logs/mocha.xml",
     "webpack-lib": "webpack --config webpack-library.config.babel.js -p",
     "webpack-dev": "webpack -d",
     "webpack-dev-watch": "webpack -d --watch",
@@ -33,6 +33,7 @@
   "dependencies": {
     "babel-polyfill": "^6.20.0",
     "immutable": "^3.8.1",
+    "mocha-junit-reporter": "^1.13.0",
     "phaser-ce": "^2.7.3",
     "promise-polyfill": "^6.0.2",
     "react": "^15.4.1",
