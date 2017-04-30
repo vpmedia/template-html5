@@ -12,4 +12,5 @@ env:
   - TERM=dumb
 
 script:
+  - mkdir -p logs
   - yarn run build
