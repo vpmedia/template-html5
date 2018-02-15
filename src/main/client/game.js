@@ -23,10 +23,10 @@ class Game extends Phaser.Game {
       disableVisibilityChange: true,  // do not pause the game when the browser tab loses focus
       backgroundColor: '#000000',  // stage background color
     });
-    this.state.add('Boot', BootState, false);
-    this.state.add('Preload', PreloadState, false);
-    this.state.add('Game', GameState, false);
-    this.state.start('Boot');
+    this.scene.add('Boot', BootState, false);
+    this.scene.add('Preload', PreloadState, false);
+    this.scene.add('Game', GameState, false);
+    this.scene.start('Boot');
   }
 }
 

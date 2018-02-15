@@ -3,7 +3,7 @@
 /* eslint-disable import/extensions */
 import Phaser from 'phaser';
 
-class GameState extends Phaser.State {
+class GameState extends Phaser.Scene {
 
   create() {
     this.view = {};

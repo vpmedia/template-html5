@@ -3,7 +3,7 @@
 /* eslint-disable import/extensions */
 import Phaser from 'phaser';
 
-class PreloadState extends Phaser.State {
+class PreloadState extends Phaser.Scene {
 
   preload() {
     this.view = {};
@@ -15,7 +15,7 @@ class PreloadState extends Phaser.State {
   }
 
   create() {
-    this.state.start('Game');
+    this.scene.start('Game');
   }
 
   resize() {

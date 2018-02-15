@@ -5,7 +5,7 @@
 import Phaser from 'phaser';
 import WebFont from 'webfontloader';
 
-class BootState extends Phaser.State {
+class BootState extends Phaser.Scene {
   init() {
     const GAME_WIDTH = 1280;
     const GAME_HEIGHT = 1024;
@@ -13,29 +13,29 @@ class BootState extends Phaser.State {
     // phaser.io/docs/2.6.2/Phaser.Input.html#maxPointers
     this.input.maxPointers = 1;
     // round coordinates to whole pixels
-    this.game.renderer.renderSession.roundPixels = true;
+    // this.game.renderer.renderSession.roundPixels = true;
     // clear the canvas each frame before rendering the display list.
     // phaser.io/docs/2.6.2/Phaser.Game.html#clearBeforeRender
-    this.game.clearBeforeRender = false;
+    // this.game.clearBeforeRender = false;
     // should the game loop force a logic update, regardless of the delta timer
     // phaser.io/docs/2.6.2/Phaser.Game.html#forceSingleUpdate
-    this.game.forceSingleUpdate = true;
+    // this.game.forceSingleUpdate = true;
     // enable advanced profiling
     // phaser.io/docs/2.6.2/Phaser.Time.html#advancedTiming
-    this.game.time.advancedTiming = __DEV__;
+    // this.game.time.advancedTiming = __DEV__;
     // set scale mode
     // phaser.io/docs/2.6.2/Phaser.ScaleManager.html
-    this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-    this.scale.fullScreenScaleMode = Phaser.ScaleManager.USER_SCALE;
-    this.game.scale.onSizeChange.add((width, height) => {
+    // this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+    // this.scale.fullScreenScaleMode = Phaser.ScaleManager.USER_SCALE;
+    /* this.game.scale.onSizeChange.add((width, height) => {
       const state = this.game.state.getCurrentState();
       if (state && state.resize) {
         state.resize(width, height);
       }
-    });
+    }); */
     let lastWidth = -1;
     let lastHeight = -1;
-    this.game.scale.setResizeCallback((scale, parentBounds) => {
+    /* this.game.scale.setResizeCallback((scale, parentBounds) => {
       if (lastWidth !== parentBounds.width || lastHeight !== parentBounds.height) {
         lastWidth = parentBounds.width;
         lastHeight = parentBounds.height;
@@ -46,7 +46,7 @@ class BootState extends Phaser.State {
         const newGameHeight = Math.round(window.innerHeight * invertedUserScale);
         this.game.scale.setGameSize(newGameWidth, newGameHeight);
       }
-    }, this);
+    }, this); */
     this.onFontsLoaded = this.onFontsLoaded.bind(this);
   }
 
@@ -57,12 +57,14 @@ class BootState extends Phaser.State {
       },
       active: this.onFontsLoaded,
     });
+    console.log(this);
     this.view = {};
-    this.view.textLabel = this.add.text(this.world.centerX, this.world.centerY, 'Initializing ...', {
+    this.view.textLabel = this.add.text(/*this.world.centerX*/50, /*this.world.centerY*/50, 'Initializing ...', {
       font: '16px Arial',
       fill: '#FFFFFF',
       align: 'center',
     });
+    console.log(this.view.textLabel);
     this.view.textLabel.anchor.setTo(0.5, 0.5);
     this.load.image('loaderBar', 'assets/loader-bar.png');
   }
@@ -73,7 +75,7 @@ class BootState extends Phaser.State {
   }
 
   onFontsLoaded() {
-    this.state.start('Preload');
+    this.scene.start('Preload');
   }
 
 }
