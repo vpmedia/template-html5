@@ -19,9 +19,9 @@ class Game extends Phaser.Game {
       renderMode: Phaser.AUTO,
       transparent: false,
       antialias: false,
-      enableDebug: __DEV__,  // enable phaser debug class
-      disableVisibilityChange: true,  // do not pause the game when the browser tab loses focus
-      backgroundColor: '#000000',  // stage background color
+      enableDebug: __DEV__, // enable phaser debug class
+      disableVisibilityChange: true, // do not pause the game when the browser tab loses focus
+      backgroundColor: '#000000', // stage background color
     });
     this.scene.add('Boot', BootState, false);
     this.scene.add('Preload', PreloadState, false);
