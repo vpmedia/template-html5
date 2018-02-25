@@ -37,8 +37,6 @@ const config = {
     library: [
       'babel-polyfill',
       'promise-polyfill',
-      'react',
-      'react-dom',
       'webfontloader',
       path.resolve(__dirname, 'src/main/library/index.js'),
     ],
