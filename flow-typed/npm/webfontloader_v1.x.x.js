@@ -44,6 +44,6 @@ declare module 'webfontloader' {
     load(config: WebFontConfig): void;
   }
 
-  declare var exports: WebFont;
+  declare module.exports: WebFont;
 }
 

@@ -36,38 +36,21 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.js/,
         loader: 'babel-loader',
         include: [
           path.resolve(__dirname, 'src/main'),
         ],
         exclude: [/node_modules/],
       },
-      /* {
-        test: /pixi\.js/,
-        loader: 'expose-loader?PIXI'
-      },
-      {
-        test: /phaser-split\.js/,
-        loader: 'expose-loader?Phaser'
-      },
-      {
-        test: /p2\.js/,
-        loader: 'expose-loader?p2'
-      }, */
     ],
   },
   externals: {
     phaser: 'Phaser',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.json'],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
-    /* alias: {
-      'phaser': phaser,
-      'pixi': pixi,
-      'p2': p2
-    }, */
     unsafeCache: isDebug,
   },
   bail: !isDebug,
@@ -89,7 +72,7 @@ const config = {
 const clientConfig = extend(true, {}, config, {
   target: 'web',
   entry: {
-    client: path.resolve(__dirname, 'src/main/client/app.jsx'),
+    client: path.resolve(__dirname, 'src/main/client/app.js'),
   },
   output: {
     filename: '[name].js',
@@ -117,9 +100,8 @@ const clientConfig = extend(true, {}, config, {
       minChunks: module => /node_modules/.test(module.resource),
     }), */
     new CopyWebpackPlugin([
-    { from: 'node_modules/phaser-ce/build/phaser.js', to: 'phaser.js' },
-    { from: 'node_modules/phaser-ce/build/phaser.min.js', to: 'phaser.min.js' },
-    { from: 'node_modules/phaser-ce/build/phaser.map', to: 'phaser.map' }
+    { from: 'resources/js/phaser.js', to: 'phaser.js' },
+    { from: 'resources/js/phaser.min.js', to: 'phaser.min.js' }
     ], { ignore: [], copyUnmodified: false }),
   ],
 });

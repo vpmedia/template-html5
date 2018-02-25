@@ -16,7 +16,11 @@
     "es6": true
   },
   "rules": {
-    "no-console": "off",
+    "prefer-destructuring": "warn",
+    "object-curly-newline": "warn",
+    "padded-blocks": "warn",
+    "newline-per-chained-call": "warn",
+    "no-console": "warn",
     "complexity": ["warn", { "max": 10 }],
     "require-jsdoc": ["warn", {
       "require": {

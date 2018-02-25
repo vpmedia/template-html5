@@ -3,20 +3,20 @@
 /* eslint-disable import/extensions */
 import Phaser from 'phaser';
 
-class GameState extends Phaser.State {
+class GameState extends Phaser.Scene {
 
   create() {
     this.view = {};
-    this.view.textTitle = this.add.text(this.game.world.centerX, this.game.world.centerY, 'GAME SCREEN');
+    this.view.textTitle = this.add.text(50, 50, 'GAME SCREEN');
     this.view.textTitle.font = 'Ubuntu';
     this.view.textTitle.fontSize = 32;
     this.view.textTitle.fill = '#FFFFFF';
-    this.view.textTitle.anchor.setTo(0.5);
+    // this.view.textTitle.anchor.setTo(0.5);
   }
 
   resize() {
-    this.view.textTitle.x = this.game.world.centerX;
-    this.view.textTitle.y = this.game.world.centerY;
+    this.view.textTitle.x = 50;
+    this.view.textTitle.y = 50;
   }
 
   render() {
